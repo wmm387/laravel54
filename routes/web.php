@@ -20,12 +20,14 @@ Auth::routes();
 //创建文章
 Route::get('/posts/create', 'PostController@create');
 Route::post('/posts/store', 'PostController@store');
+//删除文章
+Route::any('/posts/delete/{post}', 'PostController@delete');
 //文章列表项
 Route::get('/posts', 'PostController@index');
 //文章详情页
-Route::get('/posts/{post}', 'PostController@show');
+Route::any('/posts/{post}', 'PostController@show');
 //编辑文章
-Route::get('/posts/{post}/edit', 'PostController@edit');
+Route::get('/posts/edit/{post}', 'PostController@edit');
 Route::put('/posts/{post}', 'PostController@update');
-//删除文章
-Route::post('/posts/delete', 'PostController@delete');
+//图片上传
+Route::any('/posts/image/upload', 'PostController@imageUpload');

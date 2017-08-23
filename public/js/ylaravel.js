@@ -1,6 +1,6 @@
 var editor = new wangEditor('content');
 
-editor.config.uploadImgUrl = '/posts/image/upload';
+editor.config.uploadImgUrl = 'image/upload';
 
 // 设置 headers（举例）
 editor.config.uploadHeaders = {

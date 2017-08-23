@@ -5,27 +5,21 @@
         <div class="blog-post">
             <div style="display:inline-flex">
                     <h2 class="blog-post-title">{{$post->title}}</h2>
-                    @if (Auth::user()->can('update', $post))
-                    <a style="margin: auto"  href="/posts/{{$post->id}}/edit">
+                    <a style="margin: auto"  href="edit/{{$post->id}}">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
-                    @endif
-                    @if (Auth::user()->can('update', $post))
-                    <a style="margin: auto"  href="/posts/{{$post->id}}/delete">
+                    <a style="margin: auto"  href="delete/{{$post->id}}">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </a>
-                    @endif
             </div>
 
-            <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}} by <a href="#">{{$post->user->name}}</a></p>
+            <p class="blog-post-meta">
+            {{$post->created_at->toFormattedDateString()}} by 
+            <a href="#"></a></p>
 
-            <p>{!! $post->content !!}</p>
+            {!! $post->content !!}
             <div>
-                @if($post->zan(\Auth::id())->exists())
-                    <a href="/posts/{{$post->id}}/unzan" type="button" class="btn btn-default btn-lg">取消赞</a>
-                @else
-                    <a href="/posts/{{$post->id}}/zan" type="button" class="btn btn-primary btn-lg">赞</a>
-                @endif
+                    <a href="posts/{{$post->id}}/zan" type="button" class="btn btn-primary btn-lg">赞</a>
 
             </div>
         </div>
@@ -34,17 +28,6 @@
             <!-- Default panel contents -->
             <div class="panel-heading">评论</div>
 
-            <!-- List group -->
-            <ul class="list-group">
-                @foreach($post->comments as $comment)
-                <li class="list-group-item">
-                    <h5>{{$comment->created_at}} by {{$comment->user->name}}</h5>
-                    <div>
-                        {{$comment->content}}
-                    </div>
-                </li>
-                @endforeach
-            </ul>
         </div>
 
         <div class="panel panel-default">
