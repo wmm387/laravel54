@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 //创建文章
 Route::get('/posts/create', 'PostController@create');
 Route::post('/posts/store', 'PostController@store');
