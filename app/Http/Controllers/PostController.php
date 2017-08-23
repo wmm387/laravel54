@@ -9,6 +9,11 @@ class PostController extends Controller
 {
     //列表
     public function index() {
+        
+        $app = app();
+        $log = $app->make("log");
+        $log->info("post_index", ['data' => 'this is post index']);
+        
 
         //查找posts表,以创建时间排序
         $posts = Post::orderBy('created_at', 'desc')->paginate(5);
