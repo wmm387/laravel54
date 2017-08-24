@@ -49,7 +49,7 @@
                 </p>
                 <!-- 主页中不需要显示全文,只显示150字符 -->
                 {!! str_limit($post->content, 150, '...') !!}
-                <p class="blog-post-meta">赞 0  | 评论 {{$post->comments_count}}</p>
+                <p class="blog-post-meta">赞 {{$post->zans_count}}  | 评论 {{$post->comments_count}}</p>
             </div>
             @endforeach
             <!-- 分页  -->

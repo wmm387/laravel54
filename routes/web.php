@@ -48,5 +48,7 @@ Route::any('/posts/image/upload', 'PostController@imageUpload');
 
 //提交评论
 Route::any('/posts/{post}/comment', 'PostController@comment');
+Route::any('/posts/{post}/zan', 'PostController@zan');
+Route::any('/posts/{post}/unzan', 'PostController@unzan');
 
 

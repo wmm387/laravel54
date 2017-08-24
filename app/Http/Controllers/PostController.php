@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Comment;
+use App\Zan;
 
 class PostController extends Controller
 {
@@ -14,7 +15,7 @@ class PostController extends Controller
         
         //查找posts表,以创建时间排序
         $posts = Post::orderBy('created_at', 'desc')
-                    ->withCount('comments')
+                    ->withCount(['comments', 'zans'])
                     ->paginate(5);
         //返回文章列表页面,并传入查询posts表结果
         return view("post/index", compact('posts'));
@@ -111,6 +112,37 @@ class PostController extends Controller
         //渲染
         return back();
     }
+    
+    //赞
+    public function zan(Post $post){
+        
+        $param = [
+            'user_id' => Auth::id(),
+            'post_id' => $post->id,
+        ];
+        
+        //查找第一条数据,如果没有就创建
+        Zan::firstOrCreate($param);
+        
+        return back();
+    }
+    
+    //取消赞
+    public function unzan(Post $post){
+        $post->zan(Auth::id())->delete();
+        return back();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
