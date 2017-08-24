@@ -26,14 +26,28 @@
 
             {!! $post->content !!}
             <div>
-                    <a href="posts/{{$post->id}}/zan" type="button" class="btn btn-primary btn-lg">赞</a>
-
+            	<a href="posts/{{$post->id}}/zan" 
+            	type="button" class="btn btn-primary btn-lg">赞</a>
             </div>
         </div>
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">评论</div>
+            
+            <ul class="list-group">
+            	@foreach($post->comments as $comment)
+            	<li class="list-group-item">
+            		<h5>
+            			{{$comment->created_at}} by 
+            			{{$comment->user->name}}
+            		</h5>
+            		<div>
+            			{{$comment->content}}
+            		</div>
+            	</li>
+            	@endforeach
+            </ul>
 
         </div>
 
@@ -43,15 +57,15 @@
 
             <!-- List group -->
             <ul class="list-group">
-                <form action="/posts/comment" method="post">
+                <form action="{{ $post->id }}/comment" method="POST">
                     {{csrf_field()}}
                     <input type="hidden" name="post_id" value="{{$post->id}}"/>
                     <li class="list-group-item">
                         <textarea name="content" class="form-control" rows="10"></textarea>
                         <button class="btn btn-default" type="submit">提交</button>
                     </li>
+                    @include('layout.error')
                 </form>
-
             </ul>
         </div>
     </div>

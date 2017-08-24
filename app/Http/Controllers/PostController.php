@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
+use App\Comment;
 
 class PostController extends Controller
 {
@@ -12,13 +13,16 @@ class PostController extends Controller
     public function index() {
         
         //查找posts表,以创建时间排序
-        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        $posts = Post::orderBy('created_at', 'desc')
+                    ->withCount('comments')
+                    ->paginate(5);
         //返回文章列表页面,并传入查询posts表结果
         return view("post/index", compact('posts'));
     }
 
     //详情页面
     public function show(Post $post) {
+        $post->load('comments');//在此处已经执行查询数据库操作
         return view("post/show", compact('post'));
     }
 
@@ -90,4 +94,24 @@ class PostController extends Controller
         $path = $request->file('wangEditorH5File')->storePublicly(md5(time()));
         return asset('storage/' . $path);
     }
+    
+    //提交评论
+    public function comment(Post $post) {
+        //验证
+        $this->validate(request(), [
+            'content' => 'required|min:3',
+        ]);
+        
+        //逻辑
+        $comment = new Comment();
+        $comment->user_id = Auth::id();
+        $comment->content = request('content');
+        $post->comments()->save($comment);
+        
+        //渲染
+        return back();
+    }
+    
+    
+    
 }

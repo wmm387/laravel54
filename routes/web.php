@@ -45,3 +45,8 @@ Route::get('/posts/edit/{post}', 'PostController@edit');
 Route::put('/posts/{post}', 'PostController@update');
 //图片上传
 Route::any('/posts/image/upload', 'PostController@imageUpload');
+
+//提交评论
+Route::any('/posts/{post}/comment', 'PostController@comment');
+
+

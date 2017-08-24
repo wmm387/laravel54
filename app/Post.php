@@ -14,10 +14,18 @@ class Post extends Model
     protected $fillable = ['title', 'content', 'user_id'];
     
     //关联用户
-    public  function user() {
+    public function user() {
         
         //belongsTo3个参数,1:关联模型;2:当前模型数据名;3:关联表数据名      
         //默认就是该表user_id与id关联,请遵循命名规范,即可省略参数
         return $this->belongsTo('App\User');
+    }
+    
+    //关联评论模块
+    public function comments() {
+        
+        //hasMany 是一对多的关系,一遍文章是否有多个评论
+        return $this->hasMany('App\Comment')
+                    ->orderBy('created_at', 'desc');
     }
 }
