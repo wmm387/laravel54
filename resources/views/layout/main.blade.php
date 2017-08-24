@@ -11,7 +11,8 @@
 
     <title>laravel for blog</title>
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!--     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/wangEditor.min.css') }}">
@@ -21,6 +22,11 @@
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        .open>#fuckbootstrap {
+	       background-color:#337ab7;
+        }
+    </style>
 </head>
 
 <body>
@@ -45,7 +51,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/wangEditor.min.js') }}"></script>
     <script src="{{ asset('js/ylaravel.js') }}"></script>
 

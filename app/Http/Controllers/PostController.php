@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     //列表
     public function index() {
         
-        $app = app();
-        $log = $app->make("log");
-        $log->info("post_index", ['data' => 'this is post index']);
-        
-
         //查找posts表,以创建时间排序
         $posts = Post::orderBy('created_at', 'desc')->paginate(5);
         //返回文章列表页面,并传入查询posts表结果
@@ -40,7 +36,13 @@ class PostController extends Controller
         ]);
         
         //逻辑
-        Post::create(request(['title', 'content']));
+        //获取当前登录用户ID
+        $user_id = Auth::id();
+        //获取文章标题,内容和用户ID
+        $params = array_merge(request(['title', 'content']), compact('user_id'));
+        //创建文章模型,即插入数据库
+        $post = Post::create($params);
+        
         //渲染
         return redirect("posts");
     }
@@ -58,7 +60,12 @@ class PostController extends Controller
             'content' => 'required|string|min:10',
         ]);
         
-        //逻辑
+        //验证用户修改权限
+        $this->authorize('update', $post);
+        
+        //TODO:验证错误后刷新界面保留用户填写的数据
+        
+        //逻辑(更新数据库)
         $post->title = request('title');
         $post->content = request('content');
         $post->save();
@@ -70,7 +77,8 @@ class PostController extends Controller
     //删除逻辑
     public function delete(Post $post) {
         
-        //TODO:验证用户权限
+        //验证用户删除权限
+        $this->authorize('delete', $post);
         
         $post->delete();
         
