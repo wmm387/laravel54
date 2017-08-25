@@ -1,5 +1,6 @@
 <div class="blog-masthead">
     <div class="container">
+    	<form action="posts/search" method="get">
         <ul class="nav navbar-nav navbar-left">
             <li>
                 <a class="blog-nav-item " href="{{ url('posts') }}">首页</a>
@@ -29,12 +30,13 @@
                     	<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('user/me') }}">我的主页</a></li>
+                        <li><a href="{{url('user')}}/{{ \Auth::id() }}">我的主页</a></li>
                         <li><a href="{{ url('user/me/setting') }}">个人设置</a></li>
                         <li><a href="{{ url('logout') }}">登出</a></li>
                     </ul>
                 </div>
             </li>
         </ul>
+        </form>
     </div>
 </div>

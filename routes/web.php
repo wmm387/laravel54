@@ -31,6 +31,9 @@ Route::get('/user/me/setting', 'UserController@setting');
 //个人设置操作
 Route::post('/user/me/setting', 'UserController@settingStore');
 
+//搜索
+Route::get('/posts/search', 'PostController@search');   
+
 //创建文章
 Route::get('/posts/create', 'PostController@create');
 Route::post('/posts/store', 'PostController@store');
@@ -48,7 +51,42 @@ Route::any('/posts/image/upload', 'PostController@imageUpload');
 
 //提交评论
 Route::any('/posts/{post}/comment', 'PostController@comment');
+//点赞
 Route::any('/posts/{post}/zan', 'PostController@zan');
 Route::any('/posts/{post}/unzan', 'PostController@unzan');
+
+//个人界面
+Route::get('/user/{user}', 'UserController@show');
+//关注
+Route::any('/user/{user}/fan', 'UserController@fan');
+Route::any('/user/{user}/unfan', 'UserController@unfan');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

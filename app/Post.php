@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 //默认表=>posts
 class Post extends Model
@@ -12,6 +13,20 @@ class Post extends Model
     
     //可以注入的字段
     protected $fillable = ['title', 'content', 'user_id'];
+    
+    
+    use Searchable;
+    //定义索引里面的type
+    public function searchableAs() {
+        return 'post';
+    }
+    //定义有哪些字段需要搜索
+    public function toSearchableArray() {
+        return [
+            'title' => $this->title,
+            'content' => $this->content,
+        ];
+    }
     
     //关联用户
     public function user() {
