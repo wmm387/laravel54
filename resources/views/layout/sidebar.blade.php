@@ -19,18 +19,13 @@
             专题
         </div>
         <ul class="category-root list-group">
+        	@foreach($topics as $topic)
             <li class="list-group-item">
-                <a href="/topic/1">旅游
+                <a href="{{url('topic')}}/{{$topic->id}}">
+                	{{$topic->name}}
                 </a>
             </li>
-            <li class="list-group-item">
-                <a href="/topic/2">轻松
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="/topic/5">测试专题
-                </a>
-            </li>
+            @endforeach
         </ul>
     </aside>
 </div>

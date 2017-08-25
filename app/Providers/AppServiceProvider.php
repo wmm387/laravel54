@@ -17,6 +17,12 @@ class AppServiceProvider extends ServiceProvider
         //
         Schema::defaultStringLength(191);
         \Carbon\Carbon::setLocale('zh');
+        
+        //视图合成器
+        \View::composer('layout.sidebar', function($view) {
+           $topics = \App\Topic::all();
+           $view->with('topics', $topics);
+        });
     }
 
     /**
