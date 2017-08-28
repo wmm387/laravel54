@@ -42,13 +42,13 @@
                 	</a>
                 </h2>
                 <p class="blog-post-meta">
-                	{{ $post->created_at->toFormattedDateString() }} by 
+                	{{ $post->created_at->toFormattedDateString() }} by
                 	<a href="{{url('user')}}/{{$post->user->id}}">
                 		{{ $post->user->name }}
                 	</a>
                 </p>
                 <!-- 主页中不需要显示全文,只显示150字符 -->
-                {!! str_limit($post->content, 150, '...') !!}
+                <p>{!! str_limit($post->content, 150, '...') !!}</p>
                 <p class="blog-post-meta">赞 {{$post->zans_count}}  | 评论 {{$post->comments_count}}</p>
             </div>
             @endforeach
