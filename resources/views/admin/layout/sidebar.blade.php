@@ -11,18 +11,16 @@
 					<span>系统管理</span> <span class="pull-right-container"></span>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="/admin/permissions"><i class="fa fa-circle-o"></i>权限管理</a></li>
-					<li><a href="/admin/users"><i class="fa fa-circle-o"></i> 用户管理</a></li>
-					<li><a href="/admin/roles"><i class="fa fa-circle-o"></i> 角色管理</a></li>
+					<li><a href="{{url('admin/permissions')}}"><i class="fa fa-circle-o"></i>权限管理</a></li>
+					<li><a href="{{url('admin/users')}}"><i class="fa fa-circle-o"></i> 用户管理</a></li>
+					<li><a href="{{url('admin/roles')}}"><i class="fa fa-circle-o"></i> 角色管理</a></li>
 				</ul>
 			</li>
-			<li class="active treeview"><a href="/admin/posts"> <i class="fa fa-dashboard"></i> <span>文章管理</span>
+			<li class="active treeview"><a href="{{url('admin/posts')}}"> <i class="fa fa-dashboard"></i> <span>文章管理</span>
 			</a></li>
-			<li class="active treeview"><a href="/admin/topics"> <i
-					class="fa fa-dashboard"></i> <span>专题管理</span>
+			<li class="active treeview"><a href="{{url('admin/topics')}}"> <i class="fa fa-dashboard"></i> <span>专题管理</span>
 			</a></li>
-			<li class="active treeview"><a href="/admin/notices"> <i
-					class="fa fa-dashboard"></i> <span>通知管理</span>
+			<li class="active treeview"><a href="{{url('admin/notices')}}"> <i class="fa fa-dashboard"></i> <span>通知管理</span>
 			</a></li>
 		</ul>
 	</section>

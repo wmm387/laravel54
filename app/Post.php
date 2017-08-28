@@ -57,6 +57,10 @@ class Post extends Model
         return $this->hasMany(\App\Zan::class);
     }
     
+    /*
+     * scope 使用范围查询 
+     */
+    
     //属于某个作者的文章
     public function scopeAuthorBy(Builder $query, $user_id) {
         return $query->where('user_id', $user_id);
@@ -71,6 +75,15 @@ class Post extends Model
         return $query->doesntHave('postTopics', 'and', 
             function($q) use($topic_id) {
             $q->where('topic_id', $topic_id);
+        });
+    }
+    
+    //全局scope的方式
+    protected static function boot() {
+        parent::boot();
+        
+        static::addGlobalScope("avaiable", function(Builder $builder) {
+            $builder->whereIn('status', [0,1]);
         });
     }
     
