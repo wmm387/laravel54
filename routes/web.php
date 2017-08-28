@@ -62,35 +62,8 @@ Route::any('/user/{user}/fan', 'UserController@fan');
 Route::any('/user/{user}/unfan', 'UserController@unfan');
 
 //专题详情
-Route::get('/topic/{topic}', 'TopicController@show');
+Route::any('/topic/{topic}', 'TopicController@show');
 //投稿
-Route::post('/topic/{topic}/submit', 'TopicController@submit');
+Route::any('/topic/{topic}/submit', 'TopicController@submit');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+include_once 'admin.php';

@@ -13,12 +13,18 @@ class PostController extends Controller
     //列表
     public function index() {
         
-        //查找posts表,以创建时间排序
-        $posts = Post::orderBy('created_at', 'desc')
-                    ->withCount(['comments', 'zans'])
-                    ->paginate(5);
-        //返回文章列表页面,并传入查询posts表结果
-        return view("post/index", compact('posts'));
+        if(\Auth::user()){
+            //查找posts表,以创建时间排序
+            $posts = Post::orderBy('created_at', 'desc')
+            ->withCount(['comments', 'zans'])
+            ->paginate(5);
+            //返回文章列表页面,并传入查询posts表结果
+            return view("post/index", compact('posts'));
+        }else {
+            return redirect("login");
+        }
+        
+        
     }
 
     //详情页面
