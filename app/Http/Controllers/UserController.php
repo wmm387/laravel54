@@ -15,14 +15,13 @@ class UserController extends Controller
         
     }
     
-    //TODO:这里是通过get方式获取用户id来查找用户信息,url中含有用户id,已改使用post方式,这样url中同意使用me来代替用户id
     //个人中心页面
     public function show(User $user) {
         //这个人的信息,包含关注/粉丝/文章数
         $user = User::withCount(['stars', 'fans', 'posts'])->find($user->id);
         
-        //这个人的文章列表,现在只取出最近的10条
-        $posts = $user->posts()->orderBy('created_at', 'desc')->take(10)->get();
+        //这个人的文章列表
+        $posts = $user->posts()->orderBy('created_at', 'desc')->paginate(10);
         
         //这个人关注的用户,包含关注用户的关注/粉丝/文章数
         $stars = $user->stars;//得到这个人的关注
@@ -59,5 +58,4 @@ class UserController extends Controller
             'msg' => '',
         ];
     }
-    
 }

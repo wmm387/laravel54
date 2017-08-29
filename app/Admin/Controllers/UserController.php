@@ -70,8 +70,7 @@ class UserController extends Controller
         }
         
         //渲染
-        //TODO:传入修改成功/失败提示
-        return redirect('/admin/users');
+        return redirect('/admin/users')->with('success', '修改成功!');
     }
 }
 

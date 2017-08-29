@@ -7,6 +7,7 @@ use App\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Comment;
 use App\Zan;
+use Validator;
 
 class PostController extends Controller
 {
@@ -42,12 +43,26 @@ class PostController extends Controller
     }
 
     //创建逻辑
-    public function store() {
+    public function store(Request $request) {
         //验证
-        $this->validate(request(), [
+//         $this->validate(request(), [
+//             'title' => 'required|string|max:100|min:2',
+//             'content' => 'required|string|min:10',
+//         ]);
+
+        /*
+         * 这里由于在提交错误的情况下
+         * 也要保留用户上次提交的内容
+         */
+        
+        $validator = Validator::make($request->input(), [
             'title' => 'required|string|max:100|min:2',
             'content' => 'required|string|min:10',
         ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         
         //逻辑
         //获取当前登录用户ID
@@ -67,17 +82,29 @@ class PostController extends Controller
     }
 
     //编辑逻辑
-    public function update(Post $post) {
+    public function update(Post $post, Request $request) {
         //验证
-        $this->validate(request(), [
+//         $this->validate(request(), [
+//             'title' => 'required|string|max:100|min:2',
+//             'content' => 'required|string|min:10',
+//         ]);
+        
+        /*
+         * 这里由于在提交错误的情况下
+         * 也要保留用户上次提交的内容
+         */
+        
+        $validator = Validator::make($request->input(), [
             'title' => 'required|string|max:100|min:2',
             'content' => 'required|string|min:10',
         ]);
         
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        
         //验证用户修改权限
         $this->authorize('update', $post);
-        
-        //TODO:验证错误后刷新界面保留用户填写的数据
         
         //逻辑(更新数据库)
         $post->title = request('title');
@@ -156,29 +183,4 @@ class PostController extends Controller
         //渲染
         return view("post/search", compact('posts', 'query'));
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

@@ -12,7 +12,6 @@ class LoginController extends Controller
         return view('welcome');
     }
     
-    
     //登录页面
     public function index() {
         return view('login.index');
@@ -26,8 +25,6 @@ class LoginController extends Controller
             'password' => 'required|min:5',
             'is_remember' => 'integer',
         ]);
-        
-        //TODO:验证错误后刷新界面保留用户填写的数据
         
         //逻辑
         $user = request(['email', 'password']);

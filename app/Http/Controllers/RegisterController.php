@@ -21,8 +21,6 @@ class RegisterController extends Controller
             'password' => 'required|min:5|confirmed',
         ]);
         
-        //TODO:验证错误后刷新界面保留用户填写的数据
-        
         //逻辑
         $name = request('name');
         $email = request('email');
@@ -30,6 +28,5 @@ class RegisterController extends Controller
         $user = User::create(compact('name','email','password'));
         //渲染
         return redirect('/login');
-        
     }
 }

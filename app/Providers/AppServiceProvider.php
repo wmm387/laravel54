@@ -26,12 +26,12 @@ class AppServiceProvider extends ServiceProvider
         });
         
         //慢sql优化
-        DB::listen(function($query) {
-            $sql = $query->sql;
-            $bindings = $query->bindings;
-            $time = $query->time;
-            \Log::debug(var_export(compact('sql', 'bindings', 'time'), true));
-        });
+//         DB::listen(function($query) {
+//             $sql = $query->sql;
+//             $bindings = $query->bindings;
+//             $time = $query->time;
+//             \Log::debug(var_export(compact('sql', 'bindings', 'time'), true));
+//         });
     }
 
     /**

@@ -34,6 +34,7 @@
 					<p style="font-size:10px">创建于{{$post->created_at->diffForHumans()}}</p>
 				</div>
 				@endforeach
+				{{$posts->links()}}
 			</div>
 			
 			<div class="tab-pane" id="tab_2">

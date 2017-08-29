@@ -4,6 +4,7 @@
 	<!-- Small boxes (Stat box) -->
 	<div class="row">
 		<div class="col-lg-10 col-xs-6">
+		@include('admin.layout.error')
 			<div class="box">
 				<div class="box-header with-border">
 					<h3 class="box-title">用户列表</h3>

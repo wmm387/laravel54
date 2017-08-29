@@ -68,8 +68,7 @@ class RoleController extends Controller
         }
         
         //渲染
-        //TODO:传入修改成功/失败提示
-        return redirect('/admin/roles');
+        return redirect('/admin/roles')->with('success', '修改成功!');
     }
 }
 

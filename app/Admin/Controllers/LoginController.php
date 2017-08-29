@@ -19,8 +19,6 @@ class LoginController extends Controller
             'password' => 'required|min:5',
         ]);
         
-        //TODO:验证错误后刷新界面保留用户填写的数据
-        
         //逻辑
         $user = request(['name', 'password']);
         if (Auth::guard("admin")->attempt($user)) {
