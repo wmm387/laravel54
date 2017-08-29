@@ -5,6 +5,7 @@
 		<!-- /.search form -->
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
+			@can('system')
 			<li class="treeview active">
 				<a href="#"> 
 					<i class="fa fa-dashboard"></i>
@@ -16,12 +17,25 @@
 					<li><a href="{{url('admin/roles')}}"><i class="fa fa-circle-o"></i> 角色管理</a></li>
 				</ul>
 			</li>
-			<li class="active treeview"><a href="{{url('admin/posts')}}"> <i class="fa fa-dashboard"></i> <span>文章管理</span>
+			@endcan
+			
+			@can('post')
+			<li class="active treeview"><a href="{{url('admin/posts')}}"> 
+			<i class="fa fa-dashboard"></i> <span>文章管理</span>
 			</a></li>
-			<li class="active treeview"><a href="{{url('admin/topics')}}"> <i class="fa fa-dashboard"></i> <span>专题管理</span>
+			@endcan
+			
+			@can('topic')
+			<li class="active treeview"><a href="{{url('admin/topics')}}"> 
+			<i class="fa fa-dashboard"></i> <span>专题管理</span>
 			</a></li>
-			<li class="active treeview"><a href="{{url('admin/notices')}}"> <i class="fa fa-dashboard"></i> <span>通知管理</span>
+			@endcan
+			
+			@can('notice')
+			<li class="active treeview"><a href="{{url('admin/notices')}}"> 
+			<i class="fa fa-dashboard"></i> <span>通知管理</span>
 			</a></li>
+			@endcan
 		</ul>
 	</section>
 </aside>
