@@ -66,4 +66,7 @@ Route::any('/topic/{topic}', 'TopicController@show');
 //投稿
 Route::any('/topic/{topic}/submit', 'TopicController@submit');
 
+//通知
+Route::any('/notices', 'NoticeController@index');
+
 include_once 'admin.php';

@@ -52,5 +52,11 @@ Route::group(['prefix' => 'admin'], function() {
             ['only' => ['index', 'create', 'store', 'destroy']]);
         });
         
+            Route::group(['middleware' => 'can:notice'], function() {
+                //通知管理
+                Route::resource('notices', '\App\Admin\Controllers\NoticeController',
+                    ['only' => ['index', 'create', 'store']]);
+            });
+        
     });
 });
