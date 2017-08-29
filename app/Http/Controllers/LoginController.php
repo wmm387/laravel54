@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
+    public function welcome() {
+        return view('welcome');
+    }
+    
+    
     //登录页面
     public function index() {
         return view('login.index');

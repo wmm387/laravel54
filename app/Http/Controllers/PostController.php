@@ -18,6 +18,9 @@ class PostController extends Controller
             $posts = Post::orderBy('created_at', 'desc')
             ->withCount(['comments', 'zans'])
             ->paginate(5);
+            //这里传给页面时,应该将文章对应user信息在此提取,再传给页面,防止页面加载过慢
+            $posts->load('user');
+            
             //返回文章列表页面,并传入查询posts表结果
             return view("post/index", compact('posts'));
         }else {

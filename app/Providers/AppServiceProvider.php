@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,14 @@ class AppServiceProvider extends ServiceProvider
         \View::composer('layout.sidebar', function($view) {
            $topics = \App\Topic::all();
            $view->with('topics', $topics);
+        });
+        
+        //慢sql优化
+        DB::listen(function($query) {
+            $sql = $query->sql;
+            $bindings = $query->bindings;
+            $time = $query->time;
+            \Log::debug(var_export(compact('sql', 'bindings', 'time'), true));
         });
     }
 

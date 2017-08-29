@@ -181,6 +181,8 @@ return [
         
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
 
+        //debugbar
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
