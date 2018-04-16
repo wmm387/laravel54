@@ -24,7 +24,7 @@ TODO:
 3. 复制.env.example为.env,修改其中的各个配置
 4. 使用laravel的migrate来进行数据库迁移,或者使用laravel.sql文件建立数据库
 
-界面如下:
+界面如下:  
 ![login](https://github.com/wmm387/laravel54/blob/master/img/login.png)
 ![register](https://github.com/wmm387/laravel54/blob/master/img/register.png)
 ![post](https://github.com/wmm387/laravel54/blob/master/img/post.png)
